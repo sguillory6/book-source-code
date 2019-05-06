@@ -27,4 +27,4 @@ spec:
     - destination:
         host: apigateway
         port:
-          number: 8080
+          number: 80

@@ -27,17 +27,17 @@ spec:
               fieldPath: metadata.namespace
         - name: SPRING_PROFILES_ACTIVE
           value: "v2"
-        image: istioinaction/catalog:latest
+        image: sguillory6/node-web-app:latest
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
-            path: /health
-            port: 8080
+            path: /
+            port: 3000
             scheme: HTTP
           initialDelaySeconds: 180
         name: spring-boot
         ports:
-        - containerPort: 8080
+        - containerPort: 3000
           name: http
           protocol: TCP
         - containerPort: 9779
@@ -48,8 +48,8 @@ spec:
           protocol: TCP
         readinessProbe:
           httpGet:
-            path: /health
-            port: 8080
+            path: /
+            port: 3000
             scheme: HTTP
           initialDelaySeconds: 10
         securityContext:

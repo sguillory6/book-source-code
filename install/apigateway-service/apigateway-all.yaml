@@ -8,7 +8,7 @@ metadata:
 spec:
   ports:
   - name: http
-    port: 8080
+    port: 80
     protocol: TCP
     targetPort: 8080
   selector:
@@ -38,12 +38,6 @@ spec:
               fieldPath: metadata.namespace
         image: istioinaction/apigateway:latest
         imagePullPolicy: IfNotPresent
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 8081
-            scheme: HTTP
-          initialDelaySeconds: 180
         name: spring-boot
         ports:
         - containerPort: 8080
@@ -55,11 +49,5 @@ spec:
         - containerPort: 8778
           name: jolokia
           protocol: TCP
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: 8081
-            scheme: HTTP
-          initialDelaySeconds: 10
         securityContext:
           privileged: false
